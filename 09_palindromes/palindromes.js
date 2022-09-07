@@ -1,17 +1,33 @@
-const palindromes = function (word) {
-    const rev = word.split("").reverse().join("");
+const palindromes = function (w) {
+    //convert to lowercase
+    const word = w.toLowerCase();
+    //regex replacement
+    const punctuationless = word
+        //strip all symbols
+        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+        //strip all spaces
+        .replace(/\s/g, "");
 
-    if (word === rev) {
-        console.log(`word: ${word} === rev: ${rev}`);
+    //split the string on each char --> reverse the char array --> join the char
+    const reverse = punctuationless.toLowerCase().split("").reverse().join("");
+
+    //compare the forward with the reverse
+    if (punctuationless === reverse) {
+        // console.log(
+        //     `punctuationless: ${punctuationless} === reverse: ${reverse} --- w: ${w}`
+        // );
         return true;
     } else {
-        console.log(`str: ${word} != rev: ${rev}`);
+        // console.log(
+        //     `punctuationless: ${punctuationless} != reverse: ${reverse} --- w: ${w}`
+        // );
         return false;
     }
 };
 
-console.log(palindromes("racecar"));
-console.log(palindromes("randy"));
+// console.log(palindromes("rAcecar!!!!!!!"));
+// console.log(palindromes("A car, a man, a maraca."));
+// console.log(palindromes("RAndY"));
 
 // Do not edit below this line
 module.exports = palindromes;
